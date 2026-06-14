@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Dashboard Example</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../../dist/dashboard-engine.js"></script>
+  <script>
+    const template = {
+      meta: { title: "Trip Planner", subtitle: "Travel Dashboard" },
+      theme: {
+        mode: "dark",
+        colors: {
+          "--bg": "#0a0e17", "--panel-bg": "#111827", "--panel-border": "#1f2937",
+          "--text": "#e5e7eb", "--text-dim": "#6b7280", "--gold": "#e8652a",
+          "--accent": "#00d4ff", "--danger": "#ff3366", "--success": "#00ff88"
+        }
+      },
+      tabs: [
+        { id: "overview", label: "Overview", icon: "📊", sections: ["trip", "budget"] },
+        { id: "itinerary", label: "Itinerary", icon: "📅", sections: ["legs"] }
+      ],
+      sections: [
+        {
+          id: "trip", title: "Trip Info", icon: "✈️", type: "stats", dataSource: "trip",
+          cardTemplate: { fields: [
+            { key: "name", label: "Trip" },
+            { key: "dates", label: "Dates" },
+            { key: "duration", label: "Duration" },
+            { key: "status", label: "Status", format: "badge" }
+          ]}
+        },
+        {
+          id: "budget", title: "Budget", icon: "💰", type: "stats", dataSource: "budget",
+          cardTemplate: { fields: [
+            { key: "total", label: "Total", format: "money" },
+            { key: "spent", label: "Spent", format: "money" },
+            { key: "remaining", label: "Remaining", format: "money" },
+            { key: "daily", label: "Daily Avg", format: "money" }
+          ]}
+        },
+        {
+          id: "legs", title: "Trip Legs", icon: "🗺️", type: "table", dataSource: "legs",
+          cardTemplate: { fields: [
+            { key: "from", label: "From" },
+            { key: "to", label: "To" },
+            { key: "date", label: "Date", format: "date" },
+            { key: "transport", label: "Transport", format: "badge" },
+            { key: "cost", label: "Cost", format: "money" }
+          ]}
+        }
+      ]
+    };
+
+    const data = {
+      trip: { name: "Thailand Adventure", dates: "Nov/Dec 2026", duration: "14 days", status: "Planning" },
+      budget: { total: 1500, spent: 420, remaining: 1080, daily: 107 },
+      legs: [
+        { from: "Home", to: "Bangkok", date: "2026-11-28", transport: "Flight", cost: 450 },
+        { from: "Bangkok", to: "Chiang Mai", date: "2026-12-02", transport: "Train", cost: 35 },
+        { from: "Chiang Mai", to: "Phuket", date: "2026-12-06", transport: "Flight", cost: 60 },
+        { from: "Phuket", to: "Home", date: "2026-12-12", transport: "Flight", cost: 420 }
+      ]
+    };
+
+    const dash = new DashboardEngine({ template, data });
+    dash.init('#app');
+  </script>
+</body>
+</html>

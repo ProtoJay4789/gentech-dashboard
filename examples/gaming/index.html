@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Dashboard Example</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../../dist/dashboard-engine.js"></script>
+  <script>
+    const template = {
+      meta: { title: "Character Tracker", subtitle: "POE2 Build Dashboard" },
+      theme: {
+        mode: "dark",
+        colors: {
+          "--bg": "#0a0a12", "--panel-bg": "#12121a", "--panel-border": "#1e1e2e",
+          "--text": "#e0ddd4", "--text-dim": "#555", "--gold": "#c9a84c",
+          "--accent": "#7eb8ff", "--danger": "#ff6b6b", "--success": "#00ff88"
+        }
+      },
+      tabs: [
+        { id: "build", label: "Build", icon: "⚔️", sections: ["character", "skills", "progress"] },
+        { id: "goals", label: "Goals", icon: "🎯", sections: ["milestones"] }
+      ],
+      sections: [
+        {
+          id: "character", title: "Character", icon: "⚔️", type: "stats", dataSource: "character",
+          cardTemplate: { fields: [
+            { key: "class", label: "Class" },
+            { key: "build", label: "Build" },
+            { key: "level", label: "Level" },
+            { key: "act", label: "Act", format: "badge" }
+          ]}
+        },
+        {
+          id: "skills", title: "Active Skills", icon: "⚡", type: "table", dataSource: "skills",
+          cardTemplate: { fields: [
+            { key: "name", label: "Skill" },
+            { key: "type", label: "Type", format: "badge" },
+            { key: "level", label: "Level" }
+          ]}
+        },
+        {
+          id: "progress", title: "Progress", icon: "📈", type: "progress", dataSource: "progress",
+          progressConfig: { items: [
+            { label: "Campaign", valueKey: "campaign", color: "#c9a84c" },
+            { label: "Build", valueKey: "build", color: "#7eb8ff" },
+            { label: "Gems", valueKey: "gems", color: "#00ff88" }
+          ]}
+        },
+        {
+          id: "milestones", title: "Milestones", icon: "🎯", type: "checklist", dataSource: "milestones",
+          checklistConfig: { storageKey: "gaming-milestones", showProgress: true }
+        }
+      ]
+    };
+
+    const data = {
+      character: { class: "Monk", build: "Lightning Invoker", level: 42, act: "Act 3+" },
+      skills: [
+        { name: "Thunderstorm", type: "Primary", level: 12 },
+        { name: "Orb of Storms", type: "Secondary", level: 10 },
+        { name: "Mana Drain", type: "Utility", level: 8 },
+        { name: "Frozen Locus", type: "CC", level: 6 }
+      ],
+      progress: { campaign: 50, build: 65, gems: 45 },
+      milestones: [
+        { text: "Complete Act 3", checked: true, category: "Campaign" },
+        { text: "Get 6-link chest", checked: false, category: "Gear" },
+        { text: "Unlock ascendancy", checked: false, category: "Progress" }
+      ]
+    };
+
+    const dash = new DashboardEngine({ template, data });
+    dash.init('#app');
+  </script>
+</body>
+</html>

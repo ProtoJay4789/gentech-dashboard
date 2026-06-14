@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "GENTECH DASHBOARD",
+    "subtitle": "Gaming Character Tracker",
+    "dataUrl": "gaming-data.json",
+    "refreshMs": 30000,
+    "version": "v1.0",
+    "brand": "GENTECH DASHBOARD",
+    "badge": "Template #002 — Gaming",
+    "game": "Path of Exile 2",
+    "patch": "0.5"
+  },
+  "theme": {
+    "mode": "dark",
+    "colors": {
+      "--bg": "#0a0a12",
+      "--panel-bg": "#12121a",
+      "--panel-border": "#1e1e2e",
+      "--text": "#e0ddd4",
+      "--text-dim": "#555",
+      "--gold": "#c9a84c",
+      "--accent": "#7eb8ff",
+      "--danger": "#ff6b6b",
+      "--success": "#00ff88",
+      "--radius": "12px"
+    },
+    "fonts": {
+      "heading": "'Cinzel', serif",
+      "body": "'Segoe UI', system-ui, sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "container": { "maxWidth": "1100px" }
+  },
+  "tabs": [
+    { "id": "build", "label": "Build", "icon": "📊", "sections": ["character", "skills", "progress"] },
+    { "id": "passive", "label": "Passive Tree", "icon": "🌳", "sections": ["passive-info"] },
+    { "id": "goals", "label": "Goals", "icon": "🎯", "sections": ["milestones"] }
+  ],
+  "sections": [
+    {
+      "id": "character",
+      "title": "Character Info",
+      "icon": "⚔️",
+      "type": "stats",
+      "dataSource": "character",
+      "cardTemplate": {
+        "fields": [
+          { "key": "class", "label": "Class", "format": "text" },
+          { "key": "build", "label": "Build", "format": "text" },
+          { "key": "ascendancy", "label": "Ascendancy", "format": "text" },
+          { "key": "level", "label": "Level", "format": "text" },
+          { "key": "act", "label": "Act", "format": "badge" }
+        ]
+      }
+    },
+    {
+      "id": "skills",
+      "title": "Active Skills",
+      "icon": "⚡",
+      "type": "table",
+      "dataSource": "skills",
+      "cardTemplate": {
+        "fields": [
+          { "key": "name", "label": "Skill" },
+          { "key": "type", "label": "Type", "format": "badge" },
+          { "key": "primary", "label": "Primary", "format": "boolean" },
+          { "key": "level", "label": "Level", "format": "text" }
+        ]
+      }
+    },
+    {
+      "id": "progress",
+      "title": "Progress",
+      "icon": "📈",
+      "type": "progress",
+      "dataSource": "progress",
+      "progressConfig": {
+        "items": [
+          { "label": "Campaign", "valueKey": "campaign", "color": "#c9a84c" },
+          { "label": "Build Completion", "valueKey": "buildCompletion", "color": "#7eb8ff" },
+          { "label": "Gem Collection", "valueKey": "gemCollection", "color": "#00ff88" },
+          { "label": "Meta Alignment", "valueKey": "metaAlignment", "color": "#c084fc" }
+        ]
+      }
+    },
+    {
+      "id": "passive-info",
+      "title": "Passive Tree",
+      "icon": "🌳",
+      "type": "stats",
+      "dataSource": "passiveInfo",
+      "cardTemplate": {
+        "fields": [
+          { "key": "pointsUsed", "label": "Points Used", "format": "text" },
+          { "key": "totalPoints", "label": "Total Points", "format": "text" },
+          { "key": "keystones", "label": "Keystones", "format": "text" },
+          { "key": "lastUpdated", "label": "Last Updated", "format": "date" }
+        ]
+      }
+    },
+    {
+      "id": "milestones",
+      "title": "Build Milestones",
+      "icon": "🎯",
+      "type": "checklist",
+      "dataSource": "milestones",
+      "checklistConfig": {
+        "storageKey": "gaming-milestones",
+        "groupBy": "category",
+        "showProgress": true
+      }
+    }
+  ],
+  "footer": {
+    "brand": "GENTECH DASHBOARD",
+    "version": "Gaming Template v1.0",
+    "showTimestamp": true
+  }
+}

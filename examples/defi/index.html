@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeFi Dashboard Example</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../../dist/dashboard-engine.js"></script>
+  <script>
+    const template = {
+      meta: { title: "DeFi Tracker", subtitle: "LP Position Dashboard", refreshMs: 60000 },
+      theme: {
+        mode: "dark",
+        colors: {
+          "--bg": "#0a0e17", "--panel-bg": "#111827", "--panel-border": "#1f2937",
+          "--text": "#e5e7eb", "--text-dim": "#6b7280", "--gold": "#00ff88",
+          "--accent": "#00ccff", "--danger": "#ff3366", "--success": "#00ff88"
+        }
+      },
+      tabs: [
+        { id: "overview", label: "Overview", icon: "📊", sections: ["portfolio", "positions"] },
+        { id: "yields", label: "Yields", icon: "🌾", sections: ["farms"] }
+      ],
+      sections: [
+        {
+          id: "portfolio", title: "Portfolio", icon: "💰", type: "stats", dataSource: "portfolio",
+          cardTemplate: { fields: [
+            { key: "totalValue", label: "Total Value", format: "money" },
+            { key: "change24h", label: "24h Change", format: "percent" },
+            { key: "positions", label: "Positions", format: "text" },
+            { key: "chains", label: "Chains", format: "text" }
+          ]}
+        },
+        {
+          id: "positions", title: "Active Positions", icon: "🏦", type: "table", dataSource: "positions",
+          cardTemplate: { fields: [
+            { key: "protocol", label: "Protocol" },
+            { key: "chain", label: "Chain", format: "badge" },
+            { key: "asset", label: "Asset" },
+            { key: "value", label: "Value", format: "money" },
+            { key: "pnl", label: "P&L", format: "money" }
+          ]}
+        },
+        {
+          id: "farms", title: "Yield Farms", icon: "🌾", type: "table", dataSource: "farms",
+          cardTemplate: { fields: [
+            { key: "protocol", label: "Protocol" },
+            { key: "pair", label: "Pair" },
+            { key: "apy", label: "APY", format: "percent" },
+            { key: "earned", label: "Earned", format: "money" },
+            { key: "status", label: "Status", format: "badge" }
+          ]}
+        }
+      ]
+    };
+
+    const data = {
+      portfolio: { totalValue: 12500, change24h: 3.2, positions: 4, chains: 2 },
+      positions: [
+        { protocol: "Uniswap V3", chain: "Ethereum", asset: "ETH/USDC", value: 5200, pnl: 320 },
+        { protocol: "Aerodrome", chain: "Base", asset: "USDC/ETH", value: 3800, pnl: 180 },
+        { protocol: "Raydium", chain: "Solana", asset: "SOL/USDC", value: 2100, pnl: 95 },
+        { protocol: "LFJ", chain: "Avalanche", asset: "AVAX/USDC", value: 1400, pnl: 45 }
+      ],
+      farms: [
+        { protocol: "Uniswap V3", pair: "ETH/USDC", apy: 12.5, earned: 85, status: "Active" },
+        { protocol: "Aerodrome", pair: "USDC/ETH", apy: 18.2, earned: 42, status: "Active" },
+        { protocol: "Raydium", pair: "SOL/USDC", apy: 22.0, earned: 28, status: "Active" }
+      ]
+    };
+
+    const dash = new DashboardEngine({ template, data });
+    dash.init('#app');
+  </script>
+</body>
+</html>

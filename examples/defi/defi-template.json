@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "title": "GENTECH DASHBOARD",
+    "subtitle": "DeFi Position Tracker",
+    "dataUrl": "defi-data.json",
+    "refreshMs": 60000,
+    "version": "v1.0",
+    "brand": "GENTECH DASHBOARD",
+    "badge": "Template #001 — DeFi",
+    "chain": "Your Chain",
+    "dex": "Your DEX",
+    "poolAddress": "0x...",
+    "priceSource": "DexScreener"
+  },
+  "theme": {
+    "mode": "dark",
+    "colors": {
+      "--bg": "#0a0e17",
+      "--panel-bg": "#111827",
+      "--panel-border": "#1f2937",
+      "--text": "#e5e7eb",
+      "--text-dim": "#6b7280",
+      "--gold": "#00ff88",
+      "--accent": "#00ccff",
+      "--danger": "#ff3366",
+      "--success": "#00ff88",
+      "--radius": "12px"
+    },
+    "fonts": {
+      "heading": "'Cinzel', serif",
+      "body": "'Inter', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "container": { "maxWidth": "480px" }
+  },
+  "tabs": [
+    { "id": "overview", "label": "Overview", "icon": "📊", "sections": ["portfolio", "positions"] },
+    { "id": "yields", "label": "Yields", "icon": "🌾", "sections": ["yield-positions"] },
+    { "id": "history", "label": "Activity", "icon": "📜", "sections": ["transactions", "milestones"] }
+  ],
+  "sections": [
+    {
+      "id": "portfolio",
+      "title": "Portfolio Snapshot",
+      "icon": "💰",
+      "type": "stats",
+      "dataSource": "portfolio",
+      "cardTemplate": {
+        "fields": [
+          { "key": "totalValue", "label": "Total Value", "format": "money" },
+          { "key": "change24h", "label": "24h Change", "format": "percent" },
+          { "key": "activePositions", "label": "Positions", "format": "text" },
+          { "key": "chain", "label": "Chain", "format": "text" }
+        ]
+      }
+    },
+    {
+      "id": "positions",
+      "title": "Active Positions",
+      "icon": "🏦",
+      "type": "table",
+      "dataSource": "positions",
+      "cardTemplate": {
+        "fields": [
+          { "key": "protocol", "label": "Protocol" },
+          { "key": "chain", "label": "Chain", "format": "badge" },
+          { "key": "asset", "label": "Asset" },
+          { "key": "deposited", "label": "Deposited", "format": "money" },
+          { "key": "currentValue", "label": "Value", "format": "money" },
+          { "key": "pnl", "label": "P&L", "format": "money" }
+        ]
+      }
+    },
+    {
+      "id": "yield-positions",
+      "title": "Yield Farming",
+      "icon": "🌾",
+      "type": "table",
+      "dataSource": "yieldFarms",
+      "cardTemplate": {
+        "fields": [
+          { "key": "protocol", "label": "Protocol" },
+          { "key": "pair", "label": "Pair" },
+          { "key": "tvl", "label": "Pool TVL", "format": "money" },
+          { "key": "apy", "label": "APY", "format": "percent" },
+          { "key": "earned", "label": "Earned", "format": "money" },
+          { "key": "status", "label": "Status", "format": "badge" }
+        ]
+      }
+    },
+    {
+      "id": "transactions",
+      "title": "Recent Activity",
+      "icon": "📜",
+      "type": "table",
+      "dataSource": "transactions",
+      "cardTemplate": {
+        "fields": [
+          { "key": "date", "label": "Date", "format": "date" },
+          { "key": "type", "label": "Type", "format": "badge" },
+          { "key": "token", "label": "Token" },
+          { "key": "amount", "label": "Amount" },
+          { "key": "usd", "label": "USD", "format": "money" },
+          { "key": "status", "label": "Status", "format": "badge" }
+        ]
+      }
+    },
+    {
+      "id": "milestones",
+      "title": "Milestones",
+      "icon": "🎯",
+      "type": "checklist",
+      "dataSource": "milestones",
+      "checklistConfig": {
+        "storageKey": "defi-milestones",
+        "groupBy": "category",
+        "showProgress": true
+      }
+    }
+  ],
+  "footer": {
+    "brand": "GENTECH DASHBOARD",
+    "version": "DeFi Template v1.0",
+    "showTimestamp": true
+  }
+}

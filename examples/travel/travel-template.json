@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "title": "GENTECH DASHBOARD",
+    "subtitle": "Travel Planner",
+    "dataUrl": "travel-data.json",
+    "refreshMs": 300000,
+    "version": "v1.0",
+    "brand": "GENTECH DASHBOARD",
+    "badge": "Template #003 — Travel"
+  },
+  "theme": {
+    "mode": "dark",
+    "colors": {
+      "--bg": "#0a0e17",
+      "--panel-bg": "#111827",
+      "--panel-border": "#1f2937",
+      "--text": "#e5e7eb",
+      "--text-dim": "#6b7280",
+      "--gold": "#e8652a",
+      "--accent": "#00d4ff",
+      "--danger": "#ff3366",
+      "--success": "#00ff88",
+      "--radius": "12px"
+    },
+    "fonts": {
+      "heading": "'Cinzel', serif",
+      "body": "'Inter', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "container": { "maxWidth": "480px" }
+  },
+  "tabs": [
+    { "id": "overview", "label": "Overview", "icon": "📊", "sections": ["trip", "budget", "legs"] },
+    { "id": "itinerary", "label": "Itinerary", "icon": "📅", "sections": ["dailyPlan"] },
+    { "id": "food", "label": "Food", "icon": "🍜", "sections": ["restaurants"] }
+  ],
+  "sections": [
+    {
+      "id": "trip",
+      "title": "Trip Info",
+      "icon": "✈️",
+      "type": "stats",
+      "dataSource": "trip",
+      "cardTemplate": {
+        "fields": [
+          { "key": "name", "label": "Trip", "format": "text" },
+          { "key": "traveler", "label": "Traveler", "format": "text" },
+          { "key": "dates", "label": "Dates", "format": "text" },
+          { "key": "duration", "label": "Duration", "format": "text" },
+          { "key": "status", "label": "Status", "format": "badge" }
+        ]
+      }
+    },
+    {
+      "id": "budget",
+      "title": "Budget",
+      "icon": "💰",
+      "type": "stats",
+      "dataSource": "budget",
+      "cardTemplate": {
+        "fields": [
+          { "key": "total", "label": "Total Budget", "format": "money" },
+          { "key": "spent", "label": "Spent", "format": "money" },
+          { "key": "remaining", "label": "Remaining", "format": "money" },
+          { "key": "dailyAvg", "label": "Daily Avg", "format": "money" }
+        ]
+      }
+    },
+    {
+      "id": "legs",
+      "title": "Trip Legs",
+      "icon": "🗺️",
+      "type": "table",
+      "dataSource": "legs",
+      "cardTemplate": {
+        "fields": [
+          { "key": "from", "label": "From" },
+          { "key": "to", "label": "To" },
+          { "key": "date", "label": "Date", "format": "date" },
+          { "key": "transport", "label": "Transport", "format": "badge" },
+          { "key": "cost", "label": "Cost", "format": "money" },
+          { "key": "status", "label": "Status", "format": "badge" }
+        ]
+      }
+    },
+    {
+      "id": "dailyPlan",
+      "title": "Daily Itinerary",
+      "icon": "📅",
+      "type": "table",
+      "dataSource": "dailyPlan",
+      "cardTemplate": {
+        "fields": [
+          { "key": "day", "label": "Day" },
+          { "key": "date", "label": "Date", "format": "date" },
+          { "key": "activity", "label": "Activity" },
+          { "key": "time", "label": "Time" },
+          { "key": "cost", "label": "Cost", "format": "money" }
+        ]
+      }
+    },
+    {
+      "id": "restaurants",
+      "title": "Restaurants & Food",
+      "icon": "🍜",
+      "type": "table",
+      "dataSource": "restaurants",
+      "cardTemplate": {
+        "fields": [
+          { "key": "name", "label": "Restaurant" },
+          { "key": "cuisine", "label": "Cuisine", "format": "badge" },
+          { "key": "priceRange", "label": "Price", "format": "badge" },
+          { "key": "rating", "label": "Rating", "format": "text" },
+          { "key": "notes", "label": "Notes" }
+        ]
+      }
+    }
+  ],
+  "footer": {
+    "brand": "GENTECH DASHBOARD",
+    "version": "Travel Template v1.0",
+    "showTimestamp": true
+  }
+}

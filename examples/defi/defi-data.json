@@ -1,0 +1,41 @@
+{
+  "portfolio": {
+    "totalValue": 5240,
+    "change24h": 2.1,
+    "activePositions": 3,
+    "activeChains": 2,
+    "chain": "Multi-Chain",
+    "protocol": "Various"
+  },
+  "allocation": {
+    "tokenA": 45,
+    "stablecoin": 35,
+    "defi": 20
+  },
+  "positions": [
+    { "protocol": "Uniswap V3", "chain": "Ethereum", "asset": "ETH/USDC CL", "deposited": 2500, "currentValue": 2780, "pnl": 280 },
+    { "protocol": "Aerodrome", "chain": "Base", "asset": "USDC/ETH LP", "deposited": 1500, "currentValue": 1590, "pnl": 90 },
+    { "protocol": "Raydium", "chain": "Solana", "asset": "SOL/USDC LP", "deposited": 800, "currentValue": 870, "pnl": 70 }
+  ],
+  "yieldFarms": [
+    { "protocol": "Uniswap V3", "pair": "ETH/USDC", "tvl": 45000, "apy": 12.5, "earned": 85, "status": "Active" },
+    { "protocol": "Aerodrome", "pair": "USDC/ETH", "tvl": 22000, "apy": 18.2, "earned": 42, "status": "Active" },
+    { "protocol": "Raydium", "pair": "SOL/USDC", "tvl": 15000, "apy": 22.0, "earned": 28, "status": "Active" }
+  ],
+  "yieldProgress": {
+    "uniswap": 65,
+    "aerodrome": 42,
+    "raydium": 35
+  },
+  "transactions": [
+    { "date": "2026-06-14", "type": "Deposit", "token": "ETH", "amount": "0.5 ETH", "usd": 1500, "status": "Executed" },
+    { "date": "2026-06-12", "type": "Harvest", "token": "AERO", "amount": "15 AERO", "usd": 22, "status": "Executed" },
+    { "date": "2026-06-10", "type": "Swap", "token": "USDC → ETH", "amount": "500 USDC", "usd": 500, "status": "Executed" }
+  ],
+  "milestones": [
+    { "text": "First LP position opened", "checked": true, "category": "DeFi" },
+    { "text": "Multi-chain deployment", "checked": true, "category": "Infrastructure" },
+    { "text": "Automated harvesting", "checked": false, "category": "Automation" },
+    { "text": "Range rebalance bot", "checked": false, "category": "Strategy" }
+  ]
+}

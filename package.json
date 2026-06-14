@@ -1,0 +1,36 @@
+{
+  "name": "gentech-dashboard",
+  "version": "1.0.0",
+  "description": "JSON-driven dashboard engine for AI agents — zero dependencies, 8 section types, themeable",
+  "main": "dist/dashboard-engine.js",
+  "module": "src/dashboard-engine.js",
+  "files": [
+    "dist/dashboard-engine.js",
+    "src/dashboard-engine.js"
+  ],
+  "scripts": {
+    "build": "cp src/dashboard-engine.js dist/dashboard-engine.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "dashboard",
+    "json",
+    "ai-agent",
+    "defi",
+    "gaming",
+    "travel",
+    "template",
+    "renderer",
+    "zero-dependency"
+  ],
+  "author": "GenTech Labs",
+  "license": "MIT",
+  "homepage": "https://github.com/ProtoJay4789/gentech-dashboard#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProtoJay4789/gentech-dashboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ProtoJay4789/gentech-dashboard/issues"
+  }
+}
