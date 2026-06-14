@@ -2,7 +2,7 @@
 
 **DeFi-native dashboard infrastructure for the agent economy. Zero dependencies. Live data. Grant-ready.**
 
-![GenTech Dashboard](https://protojay4789.github.io/assets/dashboard-thumbnail.png)
+![GenTech Dashboard](assets/dashboard-thumbnail.png)
 
 ---
 
